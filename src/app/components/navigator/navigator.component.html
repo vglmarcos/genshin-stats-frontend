@@ -1,8 +1,8 @@
-<nav>
-    <h3>Genshin Impact Stats</h3>
-    <ul>
-        <li *ngFor="let route of routes">
-            <a [routerLink]="[route.link]">
+<nav class="flex flex-row items-center justify-between bg-[#1b1d2a] h-16 px-8">
+    <h3 class="text-white text-xl">Genshin Impact Stats</h3>
+    <ul class="flex flex-row">
+        <li class="px-6" *ngFor="let route of routes">
+            <a class="text-white text-base no-underline" [routerLink]="[route.link]">
                 {{route.name}}
             </a>
         </li>

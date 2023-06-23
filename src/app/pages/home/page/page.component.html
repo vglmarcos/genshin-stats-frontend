@@ -1,50 +1,56 @@
 <ngx-spinner *ngIf="loadAbyss() || loadResine() || loadCharacters() || loadStats()" name="homePage"
     type="ball-scale-multiple"></ngx-spinner>
 <div>
-    <h3 class="title">
-        Perfil
-    </h3>
-    <div class="search">
-        <input class="custom-input" type="text" [ngModel]="search()" (change)="updateSearch($event)">
-        <button class="btn-primary" (click)="searchUserData()">Buscar</button>
-        <button class="btn-primary" (click)="clear()">Limpiar</button>
+    <div>
+        <h3 class="text-lg text-white mb-3">
+            Perfil
+        </h3>
+        <div class="flex flex-row gap-3">
+            <input class="outline-none pl-2 rounded-md" type="text" [ngModel]="search()" (change)="updateSearch($event)">
+            <button class="outline-none rounded-md bg-white px-5 py-1 hover:bg-[#343746] hover:text-white transition-colors duration-200 ease-linear active:bg-[#34374696]" (click)="searchUserData()">Buscar</button>
+            <button class="outline-none rounded-md bg-white px-5 py-1 hover:bg-[#343746] hover:text-white transition-colors duration-200 ease-linear active:bg-[#34374696]" (click)="clear()">Limpiar</button>
+        </div>
     </div>
     <div *ngIf="!(loadAbyss() || loadResine() || loadCharacters() || loadStats())">
-        <div class="resina-sect" *ngIf="notes()">
-            <div class="resina">
-                <img src="assets/img/resina-original.webp" alt="resina logo">
-                <p>{{notes().resin}} / {{notes().max_resin}}</p>
+        <div class="my-6 flex justify-end items-center" *ngIf="notes()">
+            <div class="bg-[#3d444880] border-solid border-2 rounded-full border-[#343746] flex flex-row items-center gap-1 w-max pr-2">
+                <img class="w-8" src="assets/img/resina-original.webp" alt="resina logo">
+                <p class="text-base text-white">{{notes().resin}} / {{notes().max_resin}}</p>
             </div>
         </div>
-        <div class="sect-stats" *ngIf="stats()">
-            <h3>Estadísticas</h3>
-            <div class="stats-container">
-                <p>Logros: {{stats().achievements}}</p>
-            </div>
-        </div>
-        <section class="abyss-sect" *ngIf="spiralabyss()">
-            <h3>Espiral del abismo</h3>
-            <div class="abyss-container">
-                <p>{{spiralabyss().max_floor}}</p>
+        <section class="bg-[#3d444880] border-[#343746] border-solid border-2 rounded-xl p-3 mb-6" *ngIf="stats()">
+            <h3 class="text-white text-lg">Estadísticas</h3>
+            <div class="py-2 px-6">
+                <p class="text-white">Logros: {{stats().achievements}}</p>
             </div>
         </section>
-        <section class="characters-sect" *ngIf="characteres().length > 0">
-            <h3>Personajes</h3>
-            <div class="container">
-                <app-card *ngFor="let character of characteres()" [data]="character"></app-card>
+        <section class="bg-[#3d444880] border-[#343746] border-solid border-2 rounded-xl p-3 mb-6" *ngIf="spiralabyss()">
+            <h3 class="text-white text-lg">Espiral del abismo</h3>
+            <div class="py-2 px-6">
+                <p class="text-white">{{spiralabyss().max_floor}}</p>
             </div>
-            <h3 style="margin-top: 20px;">Generar personajes</h3>
-            <div class="teams">
-                <app-card *ngFor="let character of charactersSelected() | slice:0:4" [data]="character" class="card-select"></app-card>
-                <div class="spacer"></div>
-                <app-card *ngFor="let character of charactersSelected() | slice:4:8" [data]="character" class="card-select"></app-card>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center; margin-top: 30px;">
-                <button class="btn-primary" (click)="generateTeam()">Generar equipos</button>
-            </div>
-            
-            <div style="padding: 0 10px 10px 0; display: flex; justify-content: flex-end;">
-                <p>Total: {{characteres().length}}</p>
+        </section>
+        <section class="bg-[#3d444880] border-[#343746] border-solid border-2 rounded-xl p-3 mb-6" *ngIf="characteres().length > 0">
+            <h3 class="text-white text-lg mb-3">Personajes</h3>
+            <div class="py-2 px-6">
+                <div class="grid grid-cols-fluid gap-4">
+                    <app-card *ngFor="let character of characteres()" [data]="character"></app-card>
+                </div>
+                <h3 class="text-white my-6">Generar personajes</h3>
+                <div class="flex flex-row justify-evenly flex-wrap">
+                    <div class="flex flex-row gap-4 mb-[1rem]">
+                        <app-card class="w-[80px]" *ngFor="let character of charactersSelected() | slice:0:4" [data]="character"></app-card>
+                    </div>
+                    <div class="flex flex-row gap-4 mb-[1rem]">
+                        <app-card class="w-[80px]" *ngFor="let character of charactersSelected() | slice:4:8" [data]="character"></app-card>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-center my-3">
+                    <button class="outline-none rounded-md bg-white px-5 py-1 hover:bg-[#343746] hover:text-white transition-colors duration-200 ease-linear active:bg-[#34374696]" (click)="generateTeam()">Generar equipos</button>
+                </div>
+                <div class="flex flex-row items-center justify-end">
+                    <p class="text-white">Total: {{characteres().length}}</p>
+                </div>
             </div>
         </section>
     </div>
