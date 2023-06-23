@@ -1,0 +1,10 @@
+<nav>
+    <h3>Genshin Impact Stats</h3>
+    <ul>
+        <li *ngFor="let route of routes">
+            <a [routerLink]="[route.link]">
+                {{route.name}}
+            </a>
+        </li>
+    </ul>
+</nav>

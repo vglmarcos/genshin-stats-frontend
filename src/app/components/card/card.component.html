@@ -1,0 +1,9 @@
+<div [ngClass]="{'card': true}">
+    <div class="card-header"
+        [ngClass]="{'card-header': true, 'legendaria': data?.rarity > 4, 'epica': data?.rarity < 5, empty: !data?.rarity}">
+        <img [src]="data?.icon ? data.icon : 'assets/img/empty.svg'" [alt]="data?.name ? data.name : 'empty'">
+    </div>
+    <div class="card-footer">
+        <p>{{data?.name ? data.name : '--'}}</p>
+    </div>
+</div>
